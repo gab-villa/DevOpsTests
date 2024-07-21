@@ -7,17 +7,10 @@ pool:
    - agent.name -equals AWILBER-COMP
 
 steps:
-- script: |
-    mkdir build
-    g++ -o ./build/hello-world.exe ./src/hello-world.cpp
-  displayName: 'Run a build script'
-
-- script: |
-    cd build
-    hello-world.exe
-    cd ..
-  displayName: 'Run Display task'
-
-- script: |
-    rm -r build
-  displayName: 'Clean task'
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      Write-Host "Hello World"
