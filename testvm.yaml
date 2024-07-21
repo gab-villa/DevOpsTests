@@ -8,8 +8,8 @@ jobs:
 - deployment: VMDeploy
   displayName: Deploy to VM
   environment: 
-   name: VMenv
-   resourceName: VMenv
+   name: intune-automate
+   resourceName: DESKTOP-BRD3B8T
    resourceType: virtualMachine
   strategy:
      runOnce:
