@@ -1,18 +1,23 @@
-trigger: 
-- main
+trigger:
+- master
 
 pool:
   name: windows-app-test
-   
-jobs:
-- deployment: VMDeploy
-  displayName: Deploy to VM
-  environment: 
-   name: intune-automate
-   resourceName: DESKTOP-BRD3B8T
-   resourceType: virtualMachine
-  strategy:
-     runOnce:
-        deploy:   
-          steps:
-            - script: echo "Hello world"
+  demands:
+   - agent.name -equals AWILBER-COMP
+
+steps:
+- script: |
+    mkdir build
+    g++ -o ./build/hello-world.exe ./src/hello-world.cpp
+  displayName: 'Run a build script'
+
+- script: |
+    cd build
+    hello-world.exe
+    cd ..
+  displayName: 'Run Display task'
+
+- script: |
+    rm -r build
+  displayName: 'Clean task'
